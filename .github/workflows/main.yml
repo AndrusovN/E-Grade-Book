@@ -5,13 +5,23 @@ jobs:
   TestBackend:
     runs-on: ubuntu-latest
     steps:
-      - run: cd backend
-      - run: pip install -r requirements.txt
-      - run: pytest
+      - uses: actions/checkout@v1
+      - name: Preinstall
+        working-directory: ./backend
+        run: pip install -r requirements.txt
+      - name: Test
+        working-directory: ./backend
+        run: pytest
   TestFrontend:
     runs-on: node:lts-iron
     steps:
-      - run: cd frontend
-      - run: npm install yarn
-      - run: yarn install
-      - run: yarn test
+      - uses: actions/checkout@v1
+      - name: Install
+        working-directory: ./frontend
+        run: npm install yarn
+      - name: Install deps
+        working-directory: ./frontend
+        run: yarn install
+      - name: Test
+        working-directory: ./frontend
+        run: yarn test
