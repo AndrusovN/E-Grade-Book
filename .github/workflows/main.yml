@@ -13,7 +13,7 @@ jobs:
         working-directory: ./backend
         run: pytest
   TestFrontend:
-    runs-on: node:lts-iron
+    runs-on: node
     steps:
       - uses: actions/checkout@v1
       - name: Install
