@@ -13,12 +13,14 @@ jobs:
         working-directory: ./backend
         run: pytest
   TestFrontend:
-    runs-on: node
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
       - name: Install
+        run: apt install npm
+      - name: Install
         working-directory: ./frontend
-        run: npm install yarn
+        run: npm install --global yarn
       - name: Install deps
         working-directory: ./frontend
         run: yarn install
