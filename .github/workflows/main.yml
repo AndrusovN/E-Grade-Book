@@ -1,0 +1,34 @@
+name: E Grades Book Project CI
+run-name: ${{ github.actor }} is running CI for E Grades Book
+on: [push]
+jobs:
+  TestBackend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Preinstall
+        working-directory: ./backend
+        run: pip install -r requirements.txt
+      - name: Test
+        working-directory: ./backend
+        run: pytest
+  TestFrontend:
+    strategy:
+      matrix:
+        node-version: ['20.x']
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install
+        working-directory: ./frontend
+        run: npm install --global yarn
+      - name: Install deps
+        working-directory: ./frontend
+        run: yarn install
+      - name: Test
+        working-directory: ./frontend
+        run: yarn test
