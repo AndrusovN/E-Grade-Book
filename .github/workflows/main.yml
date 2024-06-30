@@ -3,7 +3,7 @@ run-name: ${{ github.actor }} is running CI for E Grades Book
 on: [push]
 jobs:
   TestBackend:
-    runs-on: python:alpine
+    runs-on: ubuntu-latest
     steps:
       - run: pip install -r requirements.txt
       - run: pytest
@@ -13,4 +13,3 @@ jobs:
       - run: npm install yarn
       - run: yarn install
       - run: yarn test
-      
