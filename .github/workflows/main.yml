@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Install
-        run: apt install npm
+        run: sudo apt install npm -y
       - name: Install
         working-directory: ./frontend
         run: npm install --global yarn
