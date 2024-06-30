@@ -5,11 +5,13 @@ jobs:
   TestBackend:
     runs-on: ubuntu-latest
     steps:
+      - run: cd backend
       - run: pip install -r requirements.txt
       - run: pytest
   TestFrontend:
     runs-on: node:lts-iron
     steps:
+      - run: cd frontend
       - run: npm install yarn
       - run: yarn install
       - run: yarn test
